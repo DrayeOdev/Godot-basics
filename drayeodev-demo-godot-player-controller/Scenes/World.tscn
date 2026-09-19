@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://ctpyybs8hifat"]
+
+[ext_resource type="PackedScene" uid="uid://bk60d7bj6smt3" path="res://Scenes/player.tscn" id="1_5cjrv"]
+[ext_resource type="Texture2D" uid="uid://bdgsi7pa301uu" path="res://Assets/Dark/texture_09.png" id="1_45d1s"]
+[ext_resource type="Texture2D" uid="uid://14nx4saeeea7" path="res://Assets/Dark/texture_05.png" id="2_y7y61"]
+[ext_resource type="Texture2D" uid="uid://utoaah08fape" path="res://Assets/Orange/texture_09.png" id="3_q2d71"]
+[ext_resource type="Texture2D" uid="uid://f42s6ibss1ko" path="res://Assets/Dark/texture_07.png" id="4_uo7di"]
+[ext_resource type="Texture2D" uid="uid://bk1aibmhgm1sx" path="res://Assets/Orange/texture_08.png" id="5_kn06e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j0p05"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_5nsto"]
+sky_material = SubResource("ProceduralSkyMaterial_j0p05")
+
+[sub_resource type="Environment" id="Environment_gjpho"]
+background_mode = 2
+sky = SubResource("Sky_5nsto")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yo87"]
+albedo_texture = ExtResource("1_45d1s")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cjrv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nsto"]
+albedo_texture = ExtResource("2_y7y61")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gjpho"]
+albedo_texture = ExtResource("3_q2d71")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0p05"]
+albedo_texture = ExtResource("4_uo7di")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti1bm"]
+albedo_texture = ExtResource("5_kn06e")
+uv1_scale = Vector3(0.355, 0.355, 0.355)
+uv1_triplanar = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
+left_to_right = 0.0
+size = Vector3(3, 1, 3)
+
+[node name="Node3D" type="Node3D" unique_id=209731185]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=329593502]
+environment = SubResource("Environment_gjpho")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=556692920]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1861099561]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=394924482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_7yo87")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1831095666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+material_overlay = SubResource("StandardMaterial3D_5cjrv")
+size = Vector3(1, 3, 1)
+material = SubResource("StandardMaterial3D_5nsto")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=779316983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.5, 0)
+size = Vector3(2, 1, 3)
+material = SubResource("StandardMaterial3D_gjpho")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1044560982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, 3)
+size = Vector3(3, 3, 3)
+material = SubResource("StandardMaterial3D_j0p05")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D" unique_id=2051410702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -9)
+radius = 3.0
+material = SubResource("StandardMaterial3D_ti1bm")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D" unique_id=1842663131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 0)
+mesh = SubResource("PrismMesh_g4v7s")
+material = SubResource("StandardMaterial3D_gjpho")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCombiner3D" unique_id=1112729522]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9, 0.5, 0)
+mesh = SubResource("PrismMesh_g4v7s")
+material = SubResource("StandardMaterial3D_gjpho")
+
+[node name="Player" parent="." unique_id=979047889 instance=ExtResource("1_5cjrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9238744, 0)
+movSpeed = 7.5
+decel = 15.0
+jumpStr = 6.5

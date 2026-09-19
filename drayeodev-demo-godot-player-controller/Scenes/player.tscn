@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bk60d7bj6smt3"]
+
+[ext_resource type="Script" uid="uid://dt3shtuxgxra5" path="res://Scripts/Player/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://bv8ra5ge52ypo" path="res://Scripts/Player/idle.gd" id="2_6t5aa"]
+[ext_resource type="Script" uid="uid://hl0tro5n7yn" path="res://Scripts/Player/movement.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://b38bfhkwf7ooy" path="res://Scripts/Player/camera.gd" id="3_fkybt"]
+[ext_resource type="Script" uid="uid://dnssc6maq58f0" path="res://Scripts/Player/jumping.gd" id="4_vgqql"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+
+[node name="Player" type="CharacterBody3D" unique_id=979047889]
+script = ExtResource("1_v0iea")
+jumpStr = 10.0
+
+[node name="Idle" type="Node" parent="." unique_id=1437919909]
+script = ExtResource("2_6t5aa")
+
+[node name="Camera" type="Node" parent="." unique_id=38410799]
+script = ExtResource("3_fkybt")
+
+[node name="Movement" type="Node" parent="." unique_id=1942127999]
+script = ExtResource("2_cvnsp")
+
+[node name="Jumping" type="Node" parent="." unique_id=1425174181]
+script = ExtResource("4_vgqql")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=105300968]
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=351591337]
+shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="TwistPivot" type="Node3D" parent="." unique_id=1572813218]
+unique_name_in_owner = true
+physics_interpolation_mode = 2
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot" unique_id=787616433]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Cam" type="Camera3D" parent="TwistPivot/PitchPivot" unique_id=442319833]
+unique_name_in_owner = true
